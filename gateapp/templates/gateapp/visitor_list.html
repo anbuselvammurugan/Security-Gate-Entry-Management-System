@@ -1,0 +1,165 @@
+{% extends 'gateapp/base.html' %}
+
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-3">
+
+    <h2>Visitor Records</h2>
+
+    <a
+        href="{% url 'register_visitor' %}"
+        class="btn btn-success">
+
+        + Register Visitor
+
+    </a>
+
+</div>
+
+
+<div class="table-responsive">
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Phone</th>
+
+            <th>Company</th>
+
+            <th>Purpose</th>
+
+            <th>Person To Meet</th>
+
+            <th>Vehicle</th>
+
+            <th>Check In</th>
+
+            <th>Check Out</th>
+
+            <th>Status</th>
+
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+        {% for visitor in visitors %}
+
+        <tr>
+
+            <td>
+                {{ visitor.visitor_name }}
+            </td>
+
+            <td>
+                {{ visitor.phone }}
+            </td>
+
+            <td>
+                {{ visitor.company }}
+            </td>
+
+            <td>
+                {{ visitor.purpose }}
+            </td>
+
+            <td>
+                {{ visitor.person_to_meet }}
+            </td>
+
+            <td>
+                {{ visitor.vehicle_number }}
+            </td>
+
+            <td>
+                {{ visitor.check_in|date:"d-m-Y H:i" }}
+            </td>
+
+            <td>
+
+                {% if visitor.check_out %}
+
+                    {{ visitor.check_out|date:"d-m-Y H:i" }}
+
+                {% else %}
+
+                    -
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                {% if visitor.status == 'IN' %}
+
+                    <span class="badge bg-success">
+                        Inside
+                    </span>
+
+                {% else %}
+
+                    <span class="badge bg-secondary">
+                        Checked Out
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                {% if visitor.status == 'IN' %}
+
+                    <a
+                        href="{% url 'check_out' visitor.id %}"
+                        class="btn btn-danger btn-sm">
+
+                        Check Out
+
+                    </a>
+
+                {% else %}
+
+                    <span class="text-muted">
+                        Completed
+                    </span>
+
+                {% endif %}
+
+            </td>
+
+        </tr>
+
+        {% empty %}
+
+        <tr>
+
+            <td colspan="10"
+                class="text-center">
+
+                No visitor records found.
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

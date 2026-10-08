@@ -1,0 +1,98 @@
+{% extends 'gateapp/base.html' %}
+
+
+{% block content %}
+
+<h2 class="mb-4">
+    Security Gate Dashboard
+</h2>
+
+
+<div class="row">
+
+
+    <div class="col-md-4">
+
+        <div class="card text-bg-primary mb-3">
+
+            <div class="card-body">
+
+                <h5 class="card-title">
+                    Total Visitors
+                </h5>
+
+                <h2>
+                    {{ total_visitors }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="card text-bg-success mb-3">
+
+            <div class="card-body">
+
+                <h5 class="card-title">
+                    Currently Inside
+                </h5>
+
+                <h2>
+                    {{ inside_visitors }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <div class="card text-bg-secondary mb-3">
+
+            <div class="card-body">
+
+                <h5 class="card-title">
+                    Checked Out
+                </h5>
+
+                <h2>
+                    {{ checked_out }}
+                </h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="mt-4">
+
+    <a href="{% url 'register_visitor' %}"
+       class="btn btn-success btn-lg">
+
+        Register New Visitor
+
+    </a>
+
+    <a href="{% url 'visitor_list' %}"
+       class="btn btn-primary btn-lg">
+
+        View Visitor Records
+
+    </a>
+
+</div>
+
+{% endblock %}

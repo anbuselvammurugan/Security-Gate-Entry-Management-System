@@ -1,0 +1,57 @@
+{% extends 'gateapp/base.html' %}
+
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-8">
+
+        <div class="card">
+
+            <div class="card-header bg-dark text-white">
+
+                <h4 class="mb-0">
+                    Visitor Registration
+                </h4>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Register Visitor
+
+                    </button>
+
+
+                    <a
+                        href="{% url 'dashboard' %}"
+                        class="btn btn-secondary">
+
+                        Cancel
+
+                    </a>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
